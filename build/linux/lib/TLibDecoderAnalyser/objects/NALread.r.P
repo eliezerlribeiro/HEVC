@@ -1,0 +1,29 @@
+objects/NALread.r.o: \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/NALread.cpp \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/NALread.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/NAL.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCodingStatistics.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/NALread.cpp :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/NALread.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/NAL.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCodingStatistics.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :

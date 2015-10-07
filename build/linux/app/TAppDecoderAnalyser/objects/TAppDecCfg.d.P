@@ -1,0 +1,23 @@
+objects/TAppDecCfg.d.o: \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.cpp \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TAppCommon/program_options_lite.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.cpp :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TAppCommon/program_options_lite.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/eliezer/Documents/HEVC/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h :

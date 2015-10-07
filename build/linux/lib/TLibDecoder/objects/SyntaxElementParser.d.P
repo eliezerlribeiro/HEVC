@@ -1,0 +1,15 @@
+objects/SyntaxElementParser.d.o: \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.cpp \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.h
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.cpp :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.h :

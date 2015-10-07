@@ -1,0 +1,21 @@
+objects/TEncAnalyze.d.o: \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncAnalyze.cpp \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncAnalyze.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRectangle.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/ContextTables.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/Debug.h
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncAnalyze.cpp :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncAnalyze.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRectangle.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/ContextTables.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/eliezer/Documents/HEVC/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/Debug.h :
