@@ -472,6 +472,10 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
 //mudar o codigo aqui
 // CTU min e max expansão
 // Quantidade (%) que foi codificada em 64,32,16,8
+  
+int split=0;
+  
+if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
   if(passou && uiDepth!=4){
   TComTrQuant pcTrQuant;
    int TAMANHO_BLOCO=32;
@@ -942,22 +946,207 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
        maiorAltura[CTUcont] = uiDepth;
   }
   
-  /*Arvore de decisão */
-  /*RANDON*/
+  /*Arvore de decisão RANDON */
   /* 64x 64 Arvore */
-  
-  int split=0;
-  
   if ((int)uiDepth==0){
-     
+      if(arvore64[0].vizinhosSplitAnterior <= 1){
+          split=1;
+      }else if(arvore64[0].vizinhosSplitAnterior <= 8){
+          if(arvore64[0].sobel <= 786){
+              split=1;
+          }else if(arvore64[0].vizinhosSplitAtual <=0){
+              split=0;
+          }else if(arvore64[0].COenergia <= 2565130){
+              if(arvore64[0].gradiente <= 1124124){
+                  if(arvore64[0].sobel <= 3393){
+                      if(arvore64[0].COcontraste <= 5992){
+                          if(arvore64[0].vizinhosSplitAnterior <= 2){
+                              if(arvore64[0].vizinhosSplitAnterior <= 5){
+                                  if(arvore64[0].COcontraste <= 1874){
+                                      split=1;
+                                  }else if(arvore64[0].variancia <= 2113){
+                                      split=0;
+                                  }else {
+                                      split=1;
+                                  }
+                              }else{
+                                  split=1;
+                              }
+                          }
+                      }else if(arvore64[0].vizinhosSplitAnterior <= 5){
+                          if(arvore64[0].vizinhosSplitAtual <=2){
+                              split=0;
+                          }else{
+                              split=1;
+                          }
+                      }else if( arvore64[0].vizinhosSplitAnterior <= 6){
+                          split=1;
+                      }else if(arvore64[0].COenergia <= 840088){
+                          if(arvore64[0].COenergia <= 485936){
+                              split=0;
+                          }else{
+                              split=1;
+                          }
+                      
+                      }else {
+                          split=0;
+                      }
+                  }else{
+                      split=0;
+                  }
+              }else{
+                  split=1;
+              }
+          }else{
+              split =1;
+          }
+      
+      }else{
+          split=1;
+      }
+      
   }else if((int)uiDepth==1){
   /*Arvore 32x32*/
-    
+      if(arvore32[contadorDepth1].vizinhosSplitAnterior<= 2){
+          if(arvore32[contadorDepth1].vizinhosSplitAnterior <=0){
+              split=0;
+          }else if(arvore32[contadorDepth1].gradiente <= 265440){
+              if(arvore32[contadorDepth1].COenergia <= 264644){
+                  if(arvore32[contadorDepth1].COenergia <= 35752){
+                      if(arvore32[contadorDepth1].variancia <= 4145){
+                        split=0;
+                      }else{
+                        split=1;
+                      }
+                  }else{
+                      split=0;
+                  }
+              }else{
+                  split=1;
+              }
+          }else{
+              split=0;
+          }
+      }else if(arvore32[contadorDepth1].vizinhosSplitAnterior <= 5){
+          if(arvore32[contadorDepth1].entropia <= -475.057){
+              split=0;
+          }else if(arvore32[contadorDepth1].vizinhosSplitAnterior <= 3){
+              if(arvore32[contadorDepth1].COentropia <= 5111){
+                  split=1;
+              }else if(arvore32[contadorDepth1].COenergia <= 131898){
+                  if(arvore32[contadorDepth1].variancia <= 3416){
+                      if(arvore32[contadorDepth1].COentropia <= 5303.57){
+                          split=1;
+                      }else if(arvore32[contadorDepth1].media <= 63){
+                          split=0;
+                      }else if(arvore32[contadorDepth1].COcontraste <= 395){
+                          split = 0;
+                      }else if(arvore32[contadorDepth1].mediaColunaAC <= 2160){
+                          split=1;
+                      }else {
+                          split=0;
+                      }
+                  }else {
+                      split=0;
+                  }
+              }else {
+                  split=1;
+              }
+          }else if(arvore32[contadorDepth1].DC <= 12437){
+              split=1;
+          }else if(arvore32[contadorDepth1].COentropia <= 5662.3){
+              split=1;
+          }else {
+              split=0;
+          }
+          
+      }else {
+          split =1;
+      }
+  /*Arvore 16x16*/    
   }else if((int)uiDepth==2){
+      if(arvore16[contadorDepth2].vizinhosSplitAnterior <= 0){
+          split=0;
+      }else if( arvore16[contadorDepth2].vizinhosSplitAnterior <= 2){
+          if(arvore16[contadorDepth2].DC <= 20401){
+              if(arvore16[contadorDepth2].COcontraste <= 20){
+                  split=0;
+              }else if(arvore16[contadorDepth2].Oenergia <= 1852){
+                   split=1;
+              }else if(arvore16[contadorDepth2].COenergia <= 17354){
+                  if(arvore16[contadorDepth2].media <= 45){
+                      split=0;
+                  }else if(arvore16[contadorDepth2].variancia <= 5014){
+                      if(arvore16[contadorDepth2].COcontraste <= 88){
+                          split=0;
+                      }else if(arvore16[contadorDepth2].COentropia <= 1169.41){
+                          if(arvore16[contadorDepth2].vizinhosSplitAnterior <= 1){
+                              if(arvore16[contadorDepth2].COenergia <= 7066){
+                                  if(arvore16[contadorDepth2].COcontraste <= 429){
+                                      if(arvore16[contadorDepth2].COenergia <= 5362){
+                                          if(arvore16[contadorDepth2].entropia <= -79.3497){
+                                              split=0;
+                                          }else {
+                                              split=1;
+                                          }
+                                      }else{
+                                          split=0;
+                                      }
+                                  }else {
+                                      split=0;
+                                  }
+                              }else{
+                                  split=1;
+                              }
+                          }else if(arvore16[contadorDepth2].mediaColunaAC <= 8810){
+                              if(arvore16[contadorDepth2].COenergia <= 6800){
+                                  if(arvore16[contadorDepth2].variancia <= 3625){
+                                      if(arvore16[contadorDepth2].COcontraste <= 168){
+                                          split=0;
+                                      }else if(arvore16[contadorDepth2].COentropia <= 714.954){
+                                          split=0;
+                                      }else if(arvore16[contadorDepth2].COenergia <= 4948){
+                                          if(arvore16[contadorDepth2].mediaColunaAC <= 763){
+                                              split=1;
+                                          }else{
+                                              split=0;
+                                          }
+                                      }else{
+                                          split=1;
+                                      }
+                                  }else{
+                                      split=1;
+                                  }
+                              }else{
+                                  split=0;
+                              }
+                          }else{
+                              split=0;
+                          }
+                      }else{
+                        split=0;
+                      }
+                  }else{
+                      split=1;
+                  }
+              }else{
+                split=1; 
+              }
+          }else{
+              split=1;
+          }
+      }else{
+          split=1;
+      }
+      
       
   }
   /*Fim arvore decisão*/
   
+      
+}else{
+    split=0;
+}
   
   if(!bSliceEnd && !bSliceStart && bInsidePicture )
   {
@@ -1210,18 +1399,18 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
           ((rpcBestCU->getCbf( 0, COMPONENT_Cb ) != 0) && (numberValidComponents > COMPONENT_Cb)) ||
           ((rpcBestCU->getCbf( 0, COMPONENT_Cr ) != 0) && (numberValidComponents > COMPONENT_Cr))  ) // avoid very complex intra if it is unlikely
         {
-          
+          if(!split){
           xCheckRDCostIntra( rpcBestCU, rpcTempCU, intraCost, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
-          
+          }
           rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
           if( uiDepth == g_uiMaxCUDepth - g_uiAddCUDepth )
           {
             if( rpcTempCU->getWidth(0) > ( 1 << rpcTempCU->getSlice()->getSPS()->getQuadtreeTULog2MinSize() ) )
             {
               Double tmpIntraCost;
-
+              if(!split){
               xCheckRDCostIntra( rpcBestCU, rpcTempCU, tmpIntraCost, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
-              
+              }
               intraCost = std::min(intraCost, tmpIntraCost);
               rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
             }
@@ -1324,6 +1513,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
     rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
 
     // further split
+    //if( bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth && split) //Early Termination
     if( bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth )
     {
       UChar       uhNextDepth         = uiDepth+1;
@@ -1377,6 +1567,14 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
           xCopyYuv2Tmp( pcSubBestPartCU->getTotalNumPart()*uiPartUnitIdx, uhNextDepth );
         
         //dimininuir pois é uma chamda recursiva--;
+           if(passou){
+                if((int)uiDepth==0){
+                contadorDepth1--;
+                }else if((int)uiDepth==1){
+                    contadorDepth2--;
+                }
+            }  
+          
         }
         else {
             if(passou){//não vai dar split, logo é a menor altura e tbm é a altura que foi codificado. S?N?
@@ -1474,7 +1672,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
                 }
             }
         }
-        else if(passou){//não vai dar split, logo é a menor altura e tbm é a altura que foi codificado. S?N?
+        else if(passou){
                 if((int)uiDepth < menorAltura[CTUcont]){
                   menorAltura[CTUcont] =uiDepth;
                 }  
