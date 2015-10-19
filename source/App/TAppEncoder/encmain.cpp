@@ -60,6 +60,7 @@
  int cpl_nCTB;
  int passou;
  int CTUcont=0;
+ Bool ultimaLinha;
  vector<int> maiorAltura;
  vector<int> menorAltura;
  vector<vector<int> > porcentagemCodificadaPorNivel;
@@ -80,12 +81,7 @@
  
  int CTU_hor;
  int CTU_vert;
-ofstream outArvore("arvore.txt");
-ofstream outArvore64("arvore64.txt");
-ofstream outArvore32("arvore32.txt"); 
-ofstream outArvore16("arvore16.txt"); 
-ofstream outArvore8("arvore8.txt"); 
-
+ 
 int contadorFrame; 
 
 int main(int argc, char* argv[])

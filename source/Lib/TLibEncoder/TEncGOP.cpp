@@ -51,12 +51,6 @@
 
 using namespace std;
 
-extern int cpl_nCTB;
-extern int CTUcont;
-extern vector<int> maiorAltura;
-extern vector<int> menorAltura;
-extern vector<vector<int> > porcentagemCodificadaPorNivel;
-
 #if RExt__ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
 Bool g_bFinalEncode = false;
 #endif
@@ -1738,10 +1732,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
 			
             pcSlice->setTileLocationCount ( 0 );
             m_pcSliceEncoder->encodeSlice(pcPic, pcSubstreamsOut);
-                        
-		
-            
-		   
+                        		   
 #if RExt__ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
             g_bFinalEncode = false;
 #endif

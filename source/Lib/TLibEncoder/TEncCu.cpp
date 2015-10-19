@@ -47,10 +47,10 @@
 #include <algorithm>
 using namespace std;
 extern int passou;
-
+extern Bool ultimaLinha; 
 extern int CTUcont;
-extern int cpl_nCTB
-;
+extern int cpl_nCTB;
+
 extern vector<int> maiorAltura;
 extern vector<int> menorAltura;
 
@@ -473,7 +473,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
 // CTU min e max expansão
 // Quantidade (%) que foi codificada em 64,32,16,8
   
-int split=0;
+int split=1;
   
 if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
   if(passou && uiDepth!=4){
@@ -1144,7 +1144,7 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
   /*Fim arvore decisão*/
   
       
-}else{
+}else{//caso Intra
     split=0;
 }
   
@@ -1179,24 +1179,23 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
         // 2Nx2N
         if(m_pcEncCfg->getUseEarlySkipDetection())
         {
-          if(!split){
+           if(!split){   
             xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
-          }
-          rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );//by Competition for inter_2Nx2N
+            rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );//by Competition for inter_2Nx2N
+           }
         }
         // SKIP
         
             xCheckRDCostMerge2Nx2N( rpcBestCU, rpcTempCU DEBUG_STRING_PASS_INTO(sDebug), &earlyDetectionSkipMode );//by Merge for inter_2Nx2N
-        
         rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
-
+        
         if(!m_pcEncCfg->getUseEarlySkipDetection())
         {
           // 2Nx2N, NxN
-          if(!split){
+          if(!split){   
           xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
-          }
           rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          }
           if(m_pcEncCfg->getUseCbfFastMode())
           {
             doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1231,19 +1230,19 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
           {
             if( uiDepth == g_uiMaxCUDepth - g_uiAddCUDepth && doNotBlockPu)
             {
-               if(!split){
-                 xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
-               }
-              rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          if(!split){     
+                xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
+                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          }     
             }
           }
 
           if(doNotBlockPu)
           {   
-            if(!split){
+           if(!split){ 
                 xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_Nx2N DEBUG_STRING_PASS_INTO(sDebug)  );
-            }
             rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+           } 
             if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_Nx2N )
             {
               doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1253,8 +1252,8 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
           {
             if(!split){
                 xCheckRDCostInter      ( rpcBestCU, rpcTempCU, SIZE_2NxN DEBUG_STRING_PASS_INTO(sDebug)  );
+                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
             }
-            rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
             if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_2NxN)
             {
               doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1280,10 +1279,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
             {
               if(doNotBlockPu)
               {
-                if(!split){
+           if(!split){     
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2NxnU DEBUG_STRING_PASS_INTO(sDebug) );
-                }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+           }     
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_2NxnU )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1291,10 +1290,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
               }
               if(doNotBlockPu)
               {
-                if(!split){
+            if(!split){    
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2NxnD DEBUG_STRING_PASS_INTO(sDebug) );
-                }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+            }    
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_2NxnD )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1306,10 +1305,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
             {
               if(doNotBlockPu)
               {
-                if(!split){
+             if(!split){   
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2NxnU DEBUG_STRING_PASS_INTO(sDebug), true );
-                }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+             }   
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_2NxnU )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1317,10 +1316,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
               }
               if(doNotBlockPu)
               {
-                if(!split){
+              if(!split){  
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2NxnD DEBUG_STRING_PASS_INTO(sDebug), true );
-                }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+              }  
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_2NxnD )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1334,10 +1333,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
             {
               if(doNotBlockPu)
               {
-                if(!split){
+               if(!split){ 
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_nLx2N DEBUG_STRING_PASS_INTO(sDebug) );
-                }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+               } 
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_nLx2N )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1347,8 +1346,8 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
               {
                 if(!split){
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_nRx2N DEBUG_STRING_PASS_INTO(sDebug) );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
                 }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
               }
             }
 #if AMP_MRG
@@ -1358,8 +1357,8 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
               {
                 if(!split){
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_nLx2N DEBUG_STRING_PASS_INTO(sDebug), true );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
                 }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
                 if(m_pcEncCfg->getUseCbfFastMode() && rpcBestCU->getPartitionSize(0) == SIZE_nLx2N )
                 {
                   doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1369,8 +1368,8 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
               {
                 if(!split){
                     xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_nRx2N DEBUG_STRING_PASS_INTO(sDebug), true );
+                    rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
                 }
-                rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
               }
             }
 #endif
@@ -1401,18 +1400,19 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
         {
           if(!split){
           xCheckRDCostIntra( rpcBestCU, rpcTempCU, intraCost, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
-          }
           rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          }
           if( uiDepth == g_uiMaxCUDepth - g_uiAddCUDepth )
           {
             if( rpcTempCU->getWidth(0) > ( 1 << rpcTempCU->getSlice()->getSPS()->getQuadtreeTULog2MinSize() ) )
             {
               Double tmpIntraCost;
-              if(!split){
+          if(!split){
               xCheckRDCostIntra( rpcBestCU, rpcTempCU, tmpIntraCost, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
-              }
               intraCost = std::min(intraCost, tmpIntraCost);
               rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          }
+           
             }
           }
         }
@@ -1426,10 +1426,11 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
           UInt uiBestBits = rpcBestCU->getTotalBits();
           if((uiBestBits > uiRawBits) || (rpcBestCU->getTotalCost() > m_pcRdCost->calcRdCost(uiRawBits, 0)))
           {
-            if(!split){
+          if(!split){
                 xCheckIntraPCM (rpcBestCU, rpcTempCU);
-            }
             rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
+          }
+           
           }
         }
 
@@ -1512,10 +1513,14 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
 
     rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
 
+    if(split==0){
+        split=0;
+    }
     // further split
-    //if( bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth && split) //Early Termination
-    if( bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth )
+    if( (bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth)) //Early Termination
+    //if( bSubBranch && uiDepth < g_uiMaxCUDepth - g_uiAddCUDepth )
     {
+        
       UChar       uhNextDepth         = uiDepth+1;
       TComDataCU* pcSubBestPartCU     = m_ppcBestCU[uhNextDepth];
       TComDataCU* pcSubTempPartCU     = m_ppcTempCU[uhNextDepth];
@@ -1523,6 +1528,7 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
 
               
 // decisão abaixo;
+    if(( ultimaLinha || split ||rpcBestCU->getSlice()->getSliceType() == I_SLICE )){
       for ( UInt uiPartUnitIdx = 0; uiPartUnitIdx < 4; uiPartUnitIdx++ )// divide a CU em 4 partes
       {
         pcSubBestPartCU->initSubCU( rpcTempCU, uiPartUnitIdx, uhNextDepth, iQP );           // clear sub partition datas or init.
@@ -1688,20 +1694,20 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
             }
        /*fIM DECISÃO SPLIT*/
       
+        }
       xCheckBestMode( rpcBestCU, rpcTempCU, uiDepth DEBUG_STRING_PASS_INTO(sDebug) DEBUG_STRING_PASS_INTO(sTempDebug) DEBUG_STRING_PASS_INTO(false) ); // RD compare current larger prediction
                                                                                        // with sub partitioned prediction.
     }
   }
   DEBUG_STRING_APPEND(sDebug_, sDebug);
-
   rpcBestCU->copyToPic(uiDepth);                                                     // Copy Best data to Picture for next partition prediction.
-
+  
   xCopyYuv2Pic( rpcBestCU->getPic(), rpcBestCU->getAddr(), rpcBestCU->getZorderIdxInCU(), uiDepth, uiDepth, rpcBestCU, uiLPelX, uiTPelY );   // Copy Yuv data to picture Yuv
   if( bBoundary ||(bSliceEnd && bInsidePicture))
   {
     return;
   }
-
+  
   // Assert if Best prediction mode is NONE
   // Selected mode's RD-cost must be not MAX_DOUBLE.
   assert( rpcBestCU->getPartitionSize ( 0 ) != NUMBER_OF_PART_SIZES       );
