@@ -1007,6 +1007,46 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
     // run CU encoder
     m_pcCuEncoder->compressCU( pcCU );
     
+    /*Eliezer*/
+    int iCTU =CTUcont/CTU_hor;
+    int jCTU =CTUcont%CTU_hor;
+    
+    split64Atual[iCTU][jCTU]=arvore64[0].Split;
+    
+    
+    int iCTU32 =(CTUcont/CTU_hor)*2;
+    int jCTU32 =(CTUcont%CTU_hor)*2;
+    
+    split32Atual[iCTU32][jCTU32]=arvore32[0].Split; 
+    split32Atual[iCTU32][jCTU32+1]=arvore32[1].Split;
+    split32Atual[iCTU32+1][jCTU32]=arvore32[2].Split;
+    split32Atual[iCTU32+1][jCTU32+1]=arvore32[3].Split;
+    
+    int iCTU16 =(CTUcont/CTU_hor)*4;
+    int jCTU16 =(CTUcont%CTU_hor)*4;
+    split16Atual[iCTU16][jCTU16]=arvore16[0].Split;
+    split16Atual[iCTU16][jCTU16+1]=arvore16[1].Split;
+    split16Atual[iCTU16+1][jCTU16]=arvore16[2].Split;
+    split16Atual[iCTU16+1][jCTU16+1]=arvore16[3].Split;
+    
+    split16Atual[iCTU16][jCTU16+2]=arvore16[4].Split;
+    split16Atual[iCTU16][jCTU16+3]=arvore16[5].Split;
+    split16Atual[iCTU16+1][jCTU16+2]=arvore16[6].Split;
+    split16Atual[iCTU16+1][jCTU16+3]=arvore16[7].Split;
+    
+    split16Atual[iCTU16+2][jCTU16]=arvore16[8].Split;
+    split16Atual[iCTU16+2][jCTU16+1]=arvore16[9].Split;
+    split16Atual[iCTU16+3][jCTU16]=arvore16[10].Split;
+    split16Atual[iCTU16+3][jCTU16+1]=arvore16[11].Split;
+    
+    split16Atual[iCTU16+2][jCTU16+2]=arvore16[12].Split;
+    split16Atual[iCTU16+2][jCTU16+3]=arvore16[13].Split;
+    split16Atual[iCTU16+3][jCTU16+2]=arvore16[14].Split;
+    split16Atual[iCTU16+3][jCTU16+3]=arvore16[15].Split;   
+    
+    
+  
+    /**/
     // restore entropy coder to an initial stage
     m_pcEntropyCoder->setEntropyCoder ( m_pppcRDSbacCoder[0][CI_CURR_BEST], pcSlice );
     m_pcEntropyCoder->setBitstream( &pcBitCounters[uiSubStrm] );
@@ -1069,6 +1109,29 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
     m_dPicRdCost     += pcCU->getTotalCost();
     m_uiPicDist      += pcCU->getTotalDistortion();
   }
+  
+   for(int iL=0; iL<CTU_vert;iL++){
+      for(int lop=0; lop<CTU_hor;lop++){
+        split64Anterior[iL][lop] = split64Atual[iL][lop];
+        split64Atual[iL][lop] = false;
+      }
+   }
+  
+  for(int iL=0; iL<CTU_vert*2;iL++){
+      for(int lop=0; lop<CTU_hor*2;lop++){
+        split32Anterior[iL][lop] = split32Atual[iL][lop];
+        split32Atual[iL][lop]=false;
+      }
+   }
+   
+  for(int iL=0; iL<CTU_vert*4;iL++){
+      for(int lop=0; lop<CTU_hor*4;lop++){
+        split16Anterior[iL][lop] = split16Atual[iL][lop];
+        split16Atual[iL][lop]=false;
+      }
+   }
+  
+
   if ((iNumSubstreams > 1) && !depSliceSegmentsEnabled)
   {
     pcSlice->setNextSlice( true );

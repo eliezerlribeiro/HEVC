@@ -1179,10 +1179,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
         // 2Nx2N
         if(m_pcEncCfg->getUseEarlySkipDetection())
         {
-           if(!split){   
+           
             xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
             rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );//by Competition for inter_2Nx2N
-           }
+          
         }
         // SKIP
         
@@ -1192,10 +1192,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
         if(!m_pcEncCfg->getUseEarlySkipDetection())
         {
           // 2Nx2N, NxN
-          if(!split){   
+          
           xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
           rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
-          }
+          
           if(m_pcEncCfg->getUseCbfFastMode())
           {
             doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
@@ -1571,24 +1571,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
 
           rpcTempCU->copyPartFrom( pcSubBestPartCU, uiPartUnitIdx, uhNextDepth );         // Keep best part data to current temporary data.
           xCopyYuv2Tmp( pcSubBestPartCU->getTotalNumPart()*uiPartUnitIdx, uhNextDepth );
-        
-        //dimininuir pois é uma chamda recursiva--;
-           if(passou){
-                if((int)uiDepth==0){
-                contadorDepth1--;
-                }else if((int)uiDepth==1){
-                    contadorDepth2--;
-                }
-            }  
+      
           
         }
         else {
-            if(passou){//não vai dar split, logo é a menor altura e tbm é a altura que foi codificado. S?N?
-                if((int)uiDepth==1){
-                  contadorDepth2+=4;
-                }
-            }
-            
             if (bInSlice){
                 pcSubBestPartCU->copyToPic( uhNextDepth );
                 rpcTempCU->copyPartFrom( pcSubBestPartCU, uiPartUnitIdx, uhNextDepth );
@@ -1669,10 +1655,10 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
             if(passou){
                 if((int)uiDepth==0){
                 arvore64[0].Split=true;
-                contadorDepth1++;
+              
                 }else if((int)uiDepth==1){
                     arvore32[contadorDepth1].Split=true;
-                    contadorDepth2++;
+              
                 }else if((int)uiDepth==2){
                     arvore16[contadorDepth2].Split=true;
                 }

@@ -506,6 +506,14 @@ Void TAppEncTop::encode()
     for(int i =0 ; i<cpl_nCTB_ver;i++){
         split64Atual.resize(cpl_nCTB_hor);
         split64Anterior.resize(cpl_nCTB_hor);
+        
+    }
+    
+    for(int iL=0; iL<CTU_vert;iL++){
+        for(int lop=0; lop<CTU_hor;lop++){
+            split64Atual[iL][lop]=1;
+            split64Anterior[iL][lop] = split64Atual[iL][lop] ;
+      }
     }
     
     split32Atual.resize(cpl_nCTB_ver*2);
