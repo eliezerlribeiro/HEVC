@@ -48,7 +48,11 @@
 #include "NALwrite.h"
 #include <time.h>
 #include <math.h>
-
+extern int cpl_nCTB;
+extern int CTUcont;
+extern vector<int> maiorAltura;
+extern vector<int> menorAltura;
+extern vector<vector<int> > porcentagemCodificadaPorNivel;
 using namespace std;
 
 #if RExt__ENVIRONMENT_VARIABLE_DEBUG_AND_TEST

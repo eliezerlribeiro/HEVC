@@ -853,6 +853,7 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
        uiEncCUOrder < (uiBoundingCUAddr+(rpcPic->getNumPartInCU()-1))/rpcPic->getNumPartInCU();
        uiCUAddr = rpcPic->getPicSym()->getCUOrderMap(++uiEncCUOrder) )
   {   
+      ultimaLinha=false;
       // ZERAR CONTADORES
         for(int i = 0 ; i < 16 ; i++){
               arvore16[i].DC=0;
@@ -893,10 +894,18 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
 //fim zerar
         
     CTUcont++;
+ 
+	int height = rpcPic->getPicYuvOrg()->getWidth(COMPONENT_Y);
+
+    ultimaLinha = false;
     
-    if(CTUcont+CTU_hor >= cpl_nCTB && (CTU_vert%64!=0)){
+    if(CTUcont+CTU_hor >= cpl_nCTB && (height%64!=0)){
         ultimaLinha = true;
     }
+    if((CTUcont+1)%CTU_hor==0){
+        ultimaLinha = true;
+    }
+    
             
     // initialize CU encoder
     TComDataCU*& pcCU = rpcPic->getCU( uiCUAddr );
@@ -1112,22 +1121,22 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
   
    for(int iL=0; iL<CTU_vert;iL++){
       for(int lop=0; lop<CTU_hor;lop++){
-        split64Anterior[iL][lop] = split64Atual[iL][lop];
-        split64Atual[iL][lop] = false;
+        split64Anterior[iL][lop] = split64Atual[iL][lop]; 
+        split64Atual[iL][lop] = true;
       }
    }
   
   for(int iL=0; iL<CTU_vert*2;iL++){
       for(int lop=0; lop<CTU_hor*2;lop++){
         split32Anterior[iL][lop] = split32Atual[iL][lop];
-        split32Atual[iL][lop]=false;
+        split32Atual[iL][lop]=true;
       }
    }
    
   for(int iL=0; iL<CTU_vert*4;iL++){
       for(int lop=0; lop<CTU_hor*4;lop++){
         split16Anterior[iL][lop] = split16Atual[iL][lop];
-        split16Atual[iL][lop]=false;
+        split16Atual[iL][lop]=true;
       }
    }
   

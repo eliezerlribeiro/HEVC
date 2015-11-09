@@ -511,7 +511,6 @@ Void TAppEncTop::encode()
     
     for(int iL=0; iL<CTU_vert;iL++){
         for(int lop=0; lop<CTU_hor;lop++){
-            split64Atual[iL][lop]=1;
             split64Anterior[iL][lop] = split64Atual[iL][lop] ;
       }
     }
@@ -533,13 +532,11 @@ Void TAppEncTop::encode()
 
     CTU_hor=cpl_nCTB_hor;
     CTU_vert=cpl_nCTB_ver;
-    
-    
+ 
     
 //Fim Eliezer
   while ( !bEos )
   {
-    
     // get buffers
     xGetBuffer(pcPicYuvRec);
 
