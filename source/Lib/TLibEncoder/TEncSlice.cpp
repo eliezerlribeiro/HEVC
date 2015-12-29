@@ -895,17 +895,25 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
         
     CTUcont++;
  
-	int height = rpcPic->getPicYuvOrg()->getWidth(COMPONENT_Y);
-
+	int height = rpcPic->getPicYuvOrg()->getHeight(COMPONENT_Y);
+        int width = rpcPic->getPicYuvOrg()->getWidth(COMPONENT_Y);
+   int i =(CTUcont/CTU_hor)*2;
+    int j =(CTUcont%CTU_hor)*2;
+    
     ultimaLinha = false;
     
     if(CTUcont+CTU_hor >= cpl_nCTB && (height%64!=0)){
         ultimaLinha = true;
     }
-    if((CTUcont+1)%CTU_hor==0){
+    if((CTUcont+1)%CTU_hor==0 && (width%64!=0)){
         ultimaLinha = true;
     }
     
+    if(i==0 || j==0){
+        ultimaLinha = true;
+    }
+    
+    //cout << CTUcont<< " "<<  CTUcont+CTU_hor<< " " << height%64 << " " <<cpl_nCTB<< " " << height << " "<< ultimaLinha << endl;
             
     // initialize CU encoder
     TComDataCU*& pcCU = rpcPic->getCU( uiCUAddr );
@@ -1019,7 +1027,7 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
     /*Eliezer*/
     int iCTU =CTUcont/CTU_hor;
     int jCTU =CTUcont%CTU_hor;
-    
+    //cout << iCTU << " " <<  jCTU<< endl;
     split64Atual[iCTU][jCTU]=arvore64[0].Split;
     
     
@@ -1122,26 +1130,38 @@ Void TEncSlice::compressSlice( TComPic*& rpcPic )
    for(int iL=0; iL<CTU_vert;iL++){
       for(int lop=0; lop<CTU_hor;lop++){
         split64Anterior[iL][lop] = split64Atual[iL][lop]; 
+        cout<< split64Anterior[iL][lop] << " ";
         split64Atual[iL][lop] = true;
       }
+      cout << endl;
    }
-  
+ // cout <<"####"<< endl;
   for(int iL=0; iL<CTU_vert*2;iL++){
       for(int lop=0; lop<CTU_hor*2;lop++){
         split32Anterior[iL][lop] = split32Atual[iL][lop];
+        //cout<< split32Anterior[iL][lop] << " ";
         split32Atual[iL][lop]=true;
       }
+      //cout << endl;
    }
    
   for(int iL=0; iL<CTU_vert*4;iL++){
       for(int lop=0; lop<CTU_hor*4;lop++){
         split16Anterior[iL][lop] = split16Atual[iL][lop];
+        //cout<< split16Anterior[iL][lop] << " ";
         split16Atual[iL][lop]=true;
       }
    }
+  /*
+  cout<< porcentagemCodificadaPorNivel[0][0] << endl;
+  cout<<porcentagemCodificadaPorNivel[0][1]<< endl;
+  cout<< porcentagemCodificadaPorNivel[0][2]<< endl;
+  cout<< porcentagemCodificadaPorNivel[0][3]<< endl;
+  cout<< menorAltura[CTUcont]<< endl;
+  cout<< maiorAltura[CTUcont]<< endl;
+  */
   
-
-  if ((iNumSubstreams > 1) && !depSliceSegmentsEnabled)
+   if ((iNumSubstreams > 1) && !depSliceSegmentsEnabled)
   {
     pcSlice->setNextSlice( true );
   }

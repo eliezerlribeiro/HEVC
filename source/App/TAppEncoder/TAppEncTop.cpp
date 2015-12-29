@@ -511,6 +511,7 @@ Void TAppEncTop::encode()
     
     for(int iL=0; iL<CTU_vert;iL++){
         for(int lop=0; lop<CTU_hor;lop++){
+            split64Atual[iL][lop] =true;
             split64Anterior[iL][lop] = split64Atual[iL][lop] ;
       }
     }
