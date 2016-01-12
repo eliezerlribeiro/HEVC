@@ -930,168 +930,200 @@ if(rpcBestCU->getSlice()->getSliceType() != I_SLICE){
        maiorAltura[CTUcont] = uiDepth;
   }
   
-  /*Arvore de decisão RANDON */
+   /*Arvore de decisão RANDON */
   /* 64x 64 Arvore */
   if ((int)uiDepth==0){
-      if(arvore64[0].vizinhosSplitAtual <= 0){
-          split=0;
-      }else if(arvore64[0].sobel <= 3397){
-          if(arvore64[0].vizinhosSplitAtual <= 2){
-               if(arvore64[0].variancia <= 4367){
-                   if(arvore64[0].COenergia <= 1887140){
-                       if(arvore64[0].media <= 56){
-                            split=0;
-                       }else {
-                            if(arvore64[0].COentropia <= 26636.3){
-                                if(arvore64[0].vizinhosSplitAtual <= 1){
-                                    split=0;
-                                }else{
-                                    if(arvore64[0].mediaColunaAC <= 3525){
-                                        split=1;
-                                    }else{
-                                        split=0;
-                                    }
-                                }
-                            }else{
-                                if(arvore64[0].gradiente <= 882741){
-                                    if(arvore64[0].vizinhosSplitAtual <= 1){
-                                        if(arvore64[0].variancia <= 2175){
-                                            split=0;
-                                        }else{
-                                            if(arvore64[0].DC <= 10350){
-                                                split=1;
-                                            }else{
-                                                split=0;
-                                            }
-                                        }
-                                    }else{
-                                        split=1;
-                                    }
-                                }else{
-                                    split=1;
-                                }
-                            }
-                       }
-                   }else{
-                        split=1;
-                   }
-               }else{
-                    split=1;
-               }
+      if(arvore64[0].vizinhosSplitAnterior <= 1){
+          split=1;
+      }else if(arvore64[0].vizinhosSplitAnterior <= 8){
+          if(arvore64[0].sobel <= 786){
+              split=1;
+          }else if(arvore64[0].vizinhosSplitAtual <=0){
+              split=0;
+          }else if(arvore64[0].COenergia <= 2565130){
+              if(arvore64[0].gradiente <= 1124124){
+                  if(arvore64[0].sobel <= 3393){
+                      if(arvore64[0].COcontraste <= 5992){
+                          if(arvore64[0].vizinhosSplitAnterior <= 2){
+                              if(arvore64[0].vizinhosSplitAnterior <= 5){
+                                  if(arvore64[0].COcontraste <= 1874){
+                                      split=1;
+                                  }else if(arvore64[0].variancia <= 2113){
+                                      split=0;
+                                  }else {
+                                      split=1;
+                                  }
+                              }else{
+                                  split=1;
+                              }
+                          }
+                      }else if(arvore64[0].vizinhosSplitAnterior <= 5){
+                          if(arvore64[0].vizinhosSplitAtual <=2){
+                              split=0;
+                          }else{
+                              split=1;
+                          }
+                      }else if( arvore64[0].vizinhosSplitAnterior <= 6){
+                          split=1;
+                      }else if(arvore64[0].COenergia <= 840088){
+                          if(arvore64[0].COenergia <= 485936){
+                              split=0;
+                          }else{
+                              split=1;
+                          }
+                      
+                      }else {
+                          split=0;
+                      }
+                  }else{
+                      split=0;
+                  }
+              }else{
+                  split=1;
+              }
           }else{
-            split=1;
+              split =1;
           }
+      
       }else{
-          split=0;
+          split=1;
       }
       
   }else if((int)uiDepth==1){
   /*Arvore 32x32*/
-    if(arvore32[0].vizinhosSplitAtual <= 0){
-        split=0;
-    }else{
-        if(arvore32[0].vizinhosSplitAtual <= 2){
-            if(arvore32[0].sobel <= 308){
-                 split=1;
-            }else{
-                if(arvore32[0].COenergia <= 264402){
-                    if(arvore32[0].COenergia <= 34394){
-                      split=1;  
-                    }else{
-                        if(arvore32[0].vizinhosSplitAtual <= 1){
-                            if(arvore32[0].sobel <= 416){
-                                 split=1;
-                            }else{
-                                if(arvore32[0].COentropia <= 5345.74){
-                                    if(arvore32[0].gradiente <= 222628){
-                                        if(arvore32[0].COcontraste <= 3318){
-                                           if(arvore32[0].sobel <= 682){
-                                                if(arvore32[0].gradiente <= 163767){
-                                                    split=1;  
-                                                }else{
-                                                    split=0; 
-                                                }
-                                            }else{
-                                               split=1;  
-                                            }
-                                        }else{
-                                           split=0;  
-                                        }
-                                    }else{
-                                        split=0;
-                                    }
-                                }else{
-                                    split=0;
-                                }
-                            }
-                        }else{
-                            if(arvore32[0].COenergia <= 100370){
-                                split=1;
-                            }else{
-                                split=0;
-                            }
-                        }
-                    }
-                }else{
-                    if(arvore32[0].gradiente <= 241714){
-                        split=1;
-                    }else{
+      if(arvore32[contadorDepth1].vizinhosSplitAnterior<= 2){
+          if(arvore32[contadorDepth1].vizinhosSplitAnterior <=0){
+              split=0;
+          }else if(arvore32[contadorDepth1].gradiente <= 265440){
+              if(arvore32[contadorDepth1].COenergia <= 264644){
+                  if(arvore32[contadorDepth1].COenergia <= 35752){
+                      if(arvore32[contadorDepth1].variancia <= 4145){
                         split=0;
-                    }
-                }
-            }
-        }else{
-            split=1;
-        }
-    }
-    
+                      }else{
+                        split=1;
+                      }
+                  }else{
+                      split=0;
+                  }
+              }else{
+                  split=1;
+              }
+          }else{
+              split=0;
+          }
+      }else if(arvore32[contadorDepth1].vizinhosSplitAnterior <= 5){
+          if(arvore32[contadorDepth1].entropia <= -475.057){
+              split=0;
+          }else if(arvore32[contadorDepth1].vizinhosSplitAnterior <= 3){
+              if(arvore32[contadorDepth1].COentropia <= 5111){
+                  split=1;
+              }else if(arvore32[contadorDepth1].COenergia <= 131898){
+                  if(arvore32[contadorDepth1].variancia <= 3416){
+                      if(arvore32[contadorDepth1].COentropia <= 5303.57){
+                          split=1;
+                      }else if(arvore32[contadorDepth1].media <= 63){
+                          split=0;
+                      }else if(arvore32[contadorDepth1].COcontraste <= 395){
+                          split = 0;
+                      }else if(arvore32[contadorDepth1].mediaColunaAC <= 2160){
+                          split=1;
+                      }else {
+                          split=0;
+                      }
+                  }else {
+                      split=0;
+                  }
+              }else {
+                  split=1;
+              }
+          }else if(arvore32[contadorDepth1].DC <= 12437){
+              split=1;
+          }else if(arvore32[contadorDepth1].COentropia <= 5662.3){
+              split=1;
+          }else {
+              split=0;
+          }
+          
+      }else {
+          split =1;
+      }
   /*Arvore 16x16*/    
   }else if((int)uiDepth==2){
-    if(arvore16[0].vizinhosSplitAtual <= 0){
-        if(arvore16[0].COcontraste <= 100){
-            split=0;
-        }else{
-            if(arvore16[0].variancia <= 4715){
-                if(arvore16[0].gradiente <= 60710){
-                    if(arvore16[0].mediaLinhaAC <= 1746){
+      if(arvore16[contadorDepth2].vizinhosSplitAnterior <= 0){
+          split=0;
+      }else if( arvore16[contadorDepth2].vizinhosSplitAnterior <= 2){
+          if(arvore16[contadorDepth2].DC <= 20401){
+              if(arvore16[contadorDepth2].COcontraste <= 20){
+                  split=0;
+              }else if(arvore16[contadorDepth2].COenergia <= 1852){
+                   split=1;
+              }else if(arvore16[contadorDepth2].COenergia <= 17354){
+                  if(arvore16[contadorDepth2].media <= 45){
+                      split=0;
+                  }else if(arvore16[contadorDepth2].variancia <= 5014){
+                      if(arvore16[contadorDepth2].COcontraste <= 88){
+                          split=0;
+                      }else if(arvore16[contadorDepth2].COentropia <= 1169.41){
+                          if(arvore16[contadorDepth2].vizinhosSplitAnterior <= 1){
+                              if(arvore16[contadorDepth2].COenergia <= 7066){
+                                  if(arvore16[contadorDepth2].COcontraste <= 429){
+                                      if(arvore16[contadorDepth2].COenergia <= 5362){
+                                          if(arvore16[contadorDepth2].entropia <= -79.3497){
+                                              split=0;
+                                          }else {
+                                              split=1;
+                                          }
+                                      }else{
+                                          split=0;
+                                      }
+                                  }else {
+                                      split=0;
+                                  }
+                              }else{
+                                  split=1;
+                              }
+                          }else if(arvore16[contadorDepth2].mediaColunaAC <= 8810){
+                              if(arvore16[contadorDepth2].COenergia <= 6800){
+                                  if(arvore16[contadorDepth2].variancia <= 3625){
+                                      if(arvore16[contadorDepth2].COcontraste <= 168){
+                                          split=0;
+                                      }else if(arvore16[contadorDepth2].COentropia <= 714.954){
+                                          split=0;
+                                      }else if(arvore16[contadorDepth2].COenergia <= 4948){
+                                          if(arvore16[contadorDepth2].mediaColunaAC <= 763){
+                                              split=1;
+                                          }else{
+                                              split=0;
+                                          }
+                                      }else{
+                                          split=1;
+                                      }
+                                  }else{
+                                      split=1;
+                                  }
+                              }else{
+                                  split=0;
+                              }
+                          }else{
+                              split=0;
+                          }
+                      }else{
                         split=0;
-                    }else{
-                        split=1;
-                    }
-                }else{
-                    split=0;
-                }
-            }else{
-                if(arvore16[0].COenergia <= 4596){
-                    if(arvore16[0].entropia <= -68.1016){
-                        split=1;
-                    }else{
-                        if(arvore16[0].COcontraste <= 408){
-                            split=0;
-                        }else{
-                            split=1;
-                        }
-                    }
-                }else{
-                    split=0;
-                }
-            }
-        }
-    }else{
-        if(arvore16[0].vizinhosSplitAtual <= 1){
-            if(arvore16[0].variancia <= 1197){
-                if(arvore16[0].mediaColunaAC <= 1824){
-                    split=0;
-                }else{
-                    split=1;
-                }
-            }else{
-                split=1;
-            }
-        }else{
-            split=1;
-        }
-    }
+                      }
+                  }else{
+                      split=1;
+                  }
+              }else{
+                split=1; 
+              }
+          }else{
+              split=1;
+          }
+      }else{
+          split=1;
+      }
+      
+      
   }
   /*Fim arvore decisão*/
   
